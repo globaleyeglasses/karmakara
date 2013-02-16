@@ -42,6 +42,31 @@ class Vendor extends CActiveRecord
 		return 'kk_vendor';
 	}
 
+        public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+                
+         }
+         public function renderStatus($data,$row)
+        {
+         if ($data->status==1)
+         {
+			 return "active";
+			 
+			 
+		 } 
+		 else
+		 {
+			return "inactive";
+			
+		 }
+	}
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -50,7 +75,7 @@ class Vendor extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created_at, updated_at, created_date, name, address1, address2, city, state, country, phone, email, status', 'required'),
+			array( 'name, address1, address2, city, state, country, phone, email, status', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('address1, address2', 'length', 'max'=>60),
@@ -58,7 +83,7 @@ class Vendor extends CActiveRecord
 			array('email', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('created_at, updated_at, vendor_id, created_date, name, address1, address2, city, state, country, phone, email, status', 'safe', 'on'=>'search'),
+			array('created_at, updated_at, vendor_id,name, address1, address2, city, state, country, phone, email, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,7 +109,6 @@ class Vendor extends CActiveRecord
 			'created_at' => 'Created At',
 			'updated_at' => 'Updated At',
 			'vendor_id' => 'Vendor',
-			'created_date' => 'Created Date',
 			'name' => 'Name',
 			'address1' => 'Address1',
 			'address2' => 'Address2',
@@ -111,7 +135,6 @@ class Vendor extends CActiveRecord
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('vendor_id',$this->vendor_id);
-		$criteria->compare('created_date',$this->created_date,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('address1',$this->address1,true);
 		$criteria->compare('address2',$this->address2,true);

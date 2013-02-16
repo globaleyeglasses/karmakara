@@ -18,14 +18,27 @@
                     'encodeLabel'=>false,
                     'items'=>array(
                         array('label'=>'Dashboard', 'url'=>array('/site/index')),
-                        array('label'=>'Inventory', 'url'=>array('/inventory/admin')),
-                        array('label'=>'Purchase', 'url'=>array('/purchase/admin')),
+                        array('label'=>'Inventory Management <span class="caret"></span>', 'url'=>array('/product/admin'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        'items'=>array(                 
+                                            array('label'=>'Products <span class="badge badge-info pull-right">'.Product::model()->count().'</span>', 'url'=>'/product/admin'),
+                                            array('label'=>'Locations <span class="badge badge-info pull-right">'.Location::model()->count().'</span>', 'url'=>'/location/admin'),
+                             array('label'=>'Racks <span class="badge badge-info pull-right">'.Rack::model()->count().'</span>', 'url'=>'/location/admin'),
+                             array('label'=>'Warehouse <span class="badge badge-info pull-right">'.Warehouse::model()->count().'</span>', 'url'=>'/location/admin'),
+                                                        array('label'=>'Add Location', 'url'=>'/location/create'),
+							array('label'=>'Add Rack', 'url'=>'/rack/create'),
+                            array('label'=>'Add Product', 'url'=>'/rack/create'),
+                            )),
+                        array('label'=>'Purchase Management <span class="caret"></span>', 'url'=>array('/purchase/admin'),'itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
+                        'items'=>array(                 array('label'=>'Quotes <span class="badge badge-info pull-right">'.Quote::model()->countByAttributes(array('status'=>0)).'</span>', 'url'=>'/quote/admin'),
+							array('label'=>'Purchase <span class="badge badge-info pull-right">'.Po::model()->countByAttributes(array('status'=>0)).'</span>', 'url'=>'/po/admin'),
+                                                        array('label'=>'Create Quote', 'url'=>'/quote/create'),
+                                                        array('label'=>'Create Vendor', 'url'=>'/vendor/create'),
+                                                        array('label'=>'Receive', 'url'=>'/po_receive/admin'),
+                            )),
                       
                          array('label'=>'My Account <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
                         'items'=>array(
-                            array('label'=>'My Messages <span class="badge badge-warning pull-right">26</span>', 'url'=>'#'),
-							array('label'=>'My Tasks <span class="badge badge-important pull-right">112</span>', 'url'=>'#'),
-							array('label'=>'My Invoices <span class="badge badge-info pull-right">12</span>', 'url'=>'#'),
+                         
 							
 							
 							 array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),

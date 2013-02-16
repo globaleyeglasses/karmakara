@@ -7,11 +7,8 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'created_at',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'updated_at',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'created_date',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>50)); ?>
 
@@ -27,9 +24,9 @@
 
 	<?php echo $form->textFieldRow($model,'phone',array('class'=>'span5','maxlength'=>30)); ?>
 
-	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>200)); ?>
+	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','prepend'=>'@','maxlength'=>200)); ?>
 
-	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5')); ?>
+	<?php echo $form->dropDownList($model,'status',array('1'=>'active','0'=>'inactive'),array('class'=>'span2')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

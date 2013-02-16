@@ -32,6 +32,16 @@ class PoReceive extends CActiveRecord
 	{
 		return 'kk_po_receive';
 	}
+         public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+        }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -41,7 +51,7 @@ class PoReceive extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created_at, updated_at', 'required'),
+			//array('created_at, updated_at', 'required'),
 			array('po_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

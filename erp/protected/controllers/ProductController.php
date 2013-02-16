@@ -27,7 +27,7 @@ class ProductController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('admin','index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -35,7 +35,7 @@ class ProductController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -139,6 +139,7 @@ class ProductController extends Controller
 	public function actionAdmin()
 	{
 		$model=new Product('search');
+                $this->layout = '//layouts/column1';
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Product']))
 			$model->attributes=$_GET['Product'];

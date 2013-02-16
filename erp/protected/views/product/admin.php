@@ -37,23 +37,32 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'product-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
+<?php $this->widget('bootstrap.widgets.TbExtendedGridView',array(
+	'type' => 'striped bordered',
+	'dataProvider' => $model->search(),
+	'template' => "{items}",
+	'bulkActions' => array(
+	'actionButtons' => array(
+		array(
+			'buttonType' => 'button',
+			'type' => 'primary',
+			'size' => 'small',
+			'label' => 'Testing Primary Bulk Actions',
+			'click' => 'js:function(values){console.log(values);}'
+			)
+		),
+		// if grid doesn't have a checkbox column type, it will attach
+		// one and this configuration will be part of it
+		'checkBoxColumnConfig' => array(
+		    'name' => 'product_id'
+		),
+            ),
 	'columns'=>array(
 		'product_id',
 		'vendor_id',
 		'sku',
 		'name',
-		'length',
-		'width',
-		/*
-		'height',
-		'product_weight',
-		'shipping_weight',
-		'short_description',
-		'description',
+		
 		'craft_id',
 		'artisan_id',
 		'status',
@@ -64,13 +73,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'small_image',
 		'asin',
 		'upc',
+            'location_qty',
 		'magento_qty',
 		'fba_uk_qty',
 		'fba_us_qty',
 		'reorder_point',
 		'total_qty',
 		'location_id',
-		*/
+		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),

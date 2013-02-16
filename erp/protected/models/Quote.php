@@ -35,6 +35,16 @@ class Quote extends CActiveRecord
 	{
 		return 'kk_quote';
 	}
+        public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+         }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -44,7 +54,7 @@ class Quote extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('created_at, updated_at, total_currency, total, status', 'required'),
+			array('total_currency', 'required'),
 			array('user_id, status', 'numerical', 'integerOnly'=>true),
 			array('total_currency', 'length', 'max'=>10),
 			array('total', 'length', 'max'=>12),

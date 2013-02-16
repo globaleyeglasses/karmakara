@@ -41,6 +41,16 @@ class Artisan extends CActiveRecord
 	{
 		return 'kk_artisan';
 	}
+         public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+        }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -50,7 +60,7 @@ class Artisan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, title, description, address2, city, state, country, phone, email, status, craft_id, created_at, updated_at', 'required'),
+			array('name, title, description, address2, city, state, country, phone,status, craft_id', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('name, title, address1, address2, video, craft_id', 'length', 'max'=>200),
 			array('city, state, country, email, image', 'length', 'max'=>100),

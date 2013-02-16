@@ -41,6 +41,16 @@ class Po extends CActiveRecord
 	{
 		return 'kk_po';
 	}
+        public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+        }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -50,7 +60,7 @@ class Po extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('quote_id, created_at, updated_at, status, total_currency, total, shipping, duty, taxes', 'required'),
+			array('status, total_currency', 'required'),
 			array('quote_id, vendor_id', 'numerical', 'integerOnly'=>true),
 			array('status', 'length', 'max'=>1),
 			array('total_currency', 'length', 'max'=>10),

@@ -9,8 +9,6 @@
 
 	<?php echo $form->textFieldRow($model,'vendor_id',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'created_date',array('class'=>'span5')); ?>
-
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>50)); ?>
 
 	<?php echo $form->textFieldRow($model,'address1',array('class'=>'span5','maxlength'=>60)); ?>

@@ -49,6 +49,16 @@ class Product extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        public function behaviors(){
+		return array(
+			'CTimestampBehavior' => array(
+				'class' => 'zii.behaviors.CTimestampBehavior',
+				'createAttribute' => 'created_at',
+							'enabled'=>true,
+				'updateAttribute' => 'updated_at',
+			)
+		);
+    }
 
 	/**
 	 * @return string the associated database table name
@@ -66,7 +76,7 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('vendor_id, sku, name, length, width, height, product_weight, shipping_weight, short_description, description, craft_id, status, cost_currency, cost, price_currency, price, small_image, asin, upc, magento_qty, fba_uk_qty, fba_us_qty, reorder_point, total_qty', 'required'),
+			array('vendor_id, sku, name, status, cost_currency, cost ', 'required'),
 			array('vendor_id, artisan_id, status, magento_qty, fba_uk_qty, fba_us_qty, reorder_point, total_qty, location_id', 'numerical', 'integerOnly'=>true),
 			array('sku', 'length', 'max'=>50),
 			array('name, asin, upc', 'length', 'max'=>100),
